@@ -1,19 +1,17 @@
 # MenuBarIP
 
-![logo](SCR-20260101-siyf.png)
+![logo](img/SCR-20260101-siyf.png)
 
-### **[English](##description)** 
-### **[Русский](##описание)**
+### **[English](#description)** | **[Русский](#описание)**
 
 Простое macOS приложение для отображения вашего IP-адреса и геолокации в строке меню.
-
 Simple macOS application to display your IP address and geolocation in the menu bar.
 
 ## Description
 
 MenuBarIP is a lightweight macOS application that displays your current IP address and country flag directly in the menu bar. The app uses multiple API sources for reliable IP address and geolocation detection.
 
-![ui](SCR-20260102-bued.png)
+![ui](img/SCR-20260102-bued.png)
 
 ## Features
 
@@ -25,7 +23,7 @@ MenuBarIP is a lightweight macOS application that displays your current IP addre
 - **Multilingual** — Russian and English support
 - **Auto-refresh on network changes** — updates when Wi-Fi, VPN, etc. connect/disconnect
 
-![menubar-status](SCR-20260101-slmj.png)
+![menubar-status](img/SCR-20260101-slmj.png)
 
 ## Requirements
 
