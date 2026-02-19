@@ -23,22 +23,23 @@ struct ContentView: View {
                             .font(.system(.body, design: .monospaced))
                     }
                     
-                    if let countryName = ip.countryName {
-                        HStack {
-                            Text(localizationManager.localizedString(.country))
-                                .font(.headline)
-                            Spacer()
-                            Text("\(ip.flag) \(countryName)")
-                                .font(.body)
-                        }
-                    } else if let countryCode = ip.countryCode {
-                        // Fallback to code if name is not available
-                        HStack {
-                            Text(localizationManager.localizedString(.country))
-                                .font(.headline)
-                            Spacer()
-                            Text("\(ip.flag) \(countryCode)")
-                                .font(.body)
+                    if !viewModel.disableCountryLookup {
+                        if let countryName = ip.countryName {
+                            HStack {
+                                Text(localizationManager.localizedString(.country))
+                                    .font(.headline)
+                                Spacer()
+                                Text("\(ip.flag) \(countryName)")
+                                    .font(.body)
+                            }
+                        } else if let countryCode = ip.countryCode {
+                            HStack {
+                                Text(localizationManager.localizedString(.country))
+                                    .font(.headline)
+                                Spacer()
+                                Text("\(ip.flag) \(countryCode)")
+                                    .font(.body)
+                            }
                         }
                     }
                 }
@@ -87,6 +88,15 @@ struct ContentView: View {
                 .padding(.bottom, 4)
             
             Toggle(localizationManager.localizedString(.showIP), isOn: $viewModel.showIPInStatusBar)
+                .toggleStyle(.switch)
+                .disabled(viewModel.disableCountryLookup)
+                .padding(.horizontal)
+            
+            Divider()
+                .padding(.top, 4)
+                .padding(.bottom, 4)
+            
+            Toggle(localizationManager.localizedString(.disableCountry), isOn: $viewModel.disableCountryLookup)
                 .toggleStyle(.switch)
                 .padding(.horizontal)
             

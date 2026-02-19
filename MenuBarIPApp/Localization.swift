@@ -62,6 +62,7 @@ struct LocalizedStringKey: Hashable {
     static let exit = LocalizedStringKey(rawValue: "Выход")
     static let language = LocalizedStringKey(rawValue: "Язык")
     static let showIP = LocalizedStringKey(rawValue: "Show IP")
+    static let disableCountry = LocalizedStringKey(rawValue: "Disable Country")
     static let loading = LocalizedStringKey(rawValue: "Loading...")
     static let errorMessage = LocalizedStringKey(rawValue: "Не удалось определить IP адрес. Все API не отвечают или вернули несовместимые данные.")
 }
@@ -73,6 +74,7 @@ private let russianStrings: [LocalizedStringKey: String] = [
     .exit: "Выход",
     .language: "Язык",
     .showIP: "Показывать IP",
+    .disableCountry: "Отключить страну",
     .loading: "Загрузка...",
     .errorMessage: "Не удалось определить IP адрес. Все API не отвечают или вернули несовместимые данные."
 ]
@@ -84,6 +86,7 @@ private let englishStrings: [LocalizedStringKey: String] = [
     .exit: "Quit",
     .language: "Language",
     .showIP: "Show IP",
+    .disableCountry: "Disable Country",
     .loading: "Loading...",
     .errorMessage: "Failed to determine IP address. All APIs are not responding or returned incompatible data."
 ]

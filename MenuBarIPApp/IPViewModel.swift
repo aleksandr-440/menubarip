@@ -21,6 +21,15 @@ class IPViewModel: ObservableObject {
             updateStatusBarText()
         }
     }
+    @Published var disableCountryLookup: Bool {
+        didSet {
+            UserDefaults.standard.set(disableCountryLookup, forKey: "disableCountryLookup")
+            if disableCountryLookup {
+                showIPInStatusBar = true
+            }
+            updateStatusBarText()
+        }
+    }
     
     private let ipService = IPService.shared
     private let cacheManager = CacheManager.shared
@@ -32,6 +41,10 @@ class IPViewModel: ObservableObject {
     
     init() {
         self.showIPInStatusBar = UserDefaults.standard.object(forKey: "showIPInStatusBar") as? Bool ?? true
+        self.disableCountryLookup = UserDefaults.standard.object(forKey: "disableCountryLookup") as? Bool ?? false
+        if disableCountryLookup {
+            self.showIPInStatusBar = true
+        }
         loadInitialData()
         setupHourlyRefresh()
         setupNetworkMonitoring()
@@ -87,7 +100,12 @@ class IPViewModel: ObservableObject {
         if showLoading {
             statusBarText = "🔄"
         } else if let ip = resolvedIP {
-            statusBarText = "\(ip.ip) \(ip.flag)"
+            if disableCountryLookup {
+                statusBarText = ip.ip
+            } else {
+                let thinSpace = "\u{2009}"
+                statusBarText = showIPInStatusBar ? "\(ip.ip)\(thinSpace)\(ip.flag)" : ip.flag
+            }
         } else {
             statusBarText = "🏴‍☠️"
         }
