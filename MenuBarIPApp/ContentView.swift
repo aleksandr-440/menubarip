@@ -83,7 +83,16 @@ struct ContentView: View {
             .padding(.horizontal)
             
             Divider()
-                .padding(.vertical, 4)
+                .padding(.top, 4)
+                .padding(.bottom, 4)
+            
+            Toggle(localizationManager.localizedString(.showIP), isOn: $viewModel.showIPInStatusBar)
+                .toggleStyle(.switch)
+                .padding(.horizontal)
+            
+            Divider()
+                .padding(.top, 4)
+                .padding(.bottom, 4)
             
             HStack {
                 Text(localizationManager.localizedString(.language))

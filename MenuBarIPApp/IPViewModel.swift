@@ -15,6 +15,12 @@ class IPViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     @Published var statusBarText: String = "Loading..."
+    @Published var showIPInStatusBar: Bool {
+        didSet {
+            UserDefaults.standard.set(showIPInStatusBar, forKey: "showIPInStatusBar")
+            updateStatusBarText()
+        }
+    }
     
     private let ipService = IPService.shared
     private let cacheManager = CacheManager.shared
@@ -25,6 +31,7 @@ class IPViewModel: ObservableObject {
     var localizationManager = LocalizationManager.shared
     
     init() {
+        self.showIPInStatusBar = UserDefaults.standard.object(forKey: "showIPInStatusBar") as? Bool ?? true
         loadInitialData()
         setupHourlyRefresh()
         setupNetworkMonitoring()
